@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.mtm.examples</groupId>
+	<artifactId>microservice-example</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<description>Microservices project for Spring Boot</description>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-parent</artifactId>
+		<version>Greenwich.RELEASE</version>
+	</parent>
+
+	<properties>
+		<spring.boot>2.1.3.RELEASE</spring.boot>
+		<spring.boot.eureka>1.4.6.RELEASE</spring.boot.eureka>
+		<spring.cloud.zuul>1.4.6.RELEASE</spring.cloud.zuul>
+		<java.version>1.8</java.version>
+		<springfox.version>2.8.0</springfox.version>
+		
+	</properties>
+
+	<modules>
+		<module>account-service</module>
+		<module>service-discovery</module>
+		<module>api-gateway</module>
+	</modules>
+
+</project>
