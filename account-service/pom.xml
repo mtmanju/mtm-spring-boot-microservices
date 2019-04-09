@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
-			<version>${spring.boot.eureka}</version>
+			<version>${spring.cloud}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

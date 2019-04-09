@@ -3,16 +3,18 @@ package com.mtm.examples;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import brave.sampler.Sampler;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class AccountServiceBoot {
+@EnableFeignClients
+public class CustomerServiceBoot {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AccountServiceBoot.class, args);
+		SpringApplication.run(CustomerServiceBoot.class, args);
 	}
 
 	@Bean
