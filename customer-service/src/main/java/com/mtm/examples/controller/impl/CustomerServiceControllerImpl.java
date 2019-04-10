@@ -25,14 +25,14 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	private AccountClient accountClient;
 
 	@Override
-	@RequestMapping("/customers/pesel/{pesel}")
+	@RequestMapping("/pesel/{pesel}")
 	public Customer findByPesel(@PathVariable("pesel") String pesel) {
 		LOGGER.info(String.format("CustomerServiceControllerImpl.findByPesel(%s)", pesel));
 		return customerService.findByPesel(pesel);
 	}
 
 	@Override
-	@RequestMapping("/customers/{id}")
+	@RequestMapping("/{id}")
 	public Customer findById(@PathVariable("id") Integer id) {
 		LOGGER.info(String.format("CustomerServiceControllerImpl.findById(%s)", id));
 		Customer customer = customerService.findById(id);
@@ -42,7 +42,7 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	}
 
 	@Override
-	@RequestMapping("/customers")
+	@RequestMapping
 	public List<Customer> findAll() {
 		LOGGER.info("CustomerServiceControllerImpl.findAll()");
 		return customerService.findAll();
