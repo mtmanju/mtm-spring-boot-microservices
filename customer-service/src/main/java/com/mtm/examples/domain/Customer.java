@@ -2,6 +2,8 @@ package com.mtm.examples.domain;
 
 import java.util.List;
 
+import org.springframework.hateoas.ResourceSupport;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,9 +15,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Customer extends ResourceSupport {
 
-	private Integer id;
+	private Integer customerId;
 	private String pesel;
 	private String name;
 	private CustomerType type;

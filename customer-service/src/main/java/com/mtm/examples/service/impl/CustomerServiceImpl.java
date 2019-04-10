@@ -14,14 +14,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public List<Customer> getCustomers() {
 		List<Customer> customers = new ArrayList<>();
-		customers.add(
-				Customer.builder().id(1).pesel("12345").name("Adam Kowalski").type(CustomerType.INDIVIDUAL).build());
-		customers.add(
-				Customer.builder().id(2).pesel("12346").name("Anna Malinowska").type(CustomerType.INDIVIDUAL).build());
-		customers.add(
-				Customer.builder().id(3).pesel("12347").name("Paweł Michalski").type(CustomerType.INDIVIDUAL).build());
-		customers.add(Customer.builder().id(4).pesel("12348").name("Karolina Lewandowska").type(CustomerType.INDIVIDUAL)
-				.build());
+		customers.add(Customer.builder().customerId(1).pesel("12345").name("Adam Kowalski")
+				.type(CustomerType.INDIVIDUAL).build());
+		customers.add(Customer.builder().customerId(2).pesel("12346").name("Anna Malinowska")
+				.type(CustomerType.INDIVIDUAL).build());
+		customers.add(Customer.builder().customerId(3).pesel("12347").name("Paweł Michalski")
+				.type(CustomerType.INDIVIDUAL).build());
+		customers.add(Customer.builder().customerId(4).pesel("12348").name("Karolina Lewandowska")
+				.type(CustomerType.INDIVIDUAL).build());
 		return customers;
 	}
 
@@ -31,8 +31,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer findById(Integer id) {
-		return getCustomers().stream().filter(account -> account.getId().intValue() == id.intValue()).findFirst().get();
+	public Customer findByCustomerId(Integer customerId) {
+		return getCustomers().stream().filter(account -> account.getCustomerId().intValue() == customerId.intValue())
+				.findFirst().get();
 	}
 
 	@Override

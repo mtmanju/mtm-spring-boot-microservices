@@ -8,7 +8,7 @@ public interface CustomerService {
 
 	public Customer findByPesel(String pesel);
 
-	public Customer findById(Integer id);
+	public Customer findByCustomerId(Integer customerId);
 
 	public List<Customer> findAll();
 

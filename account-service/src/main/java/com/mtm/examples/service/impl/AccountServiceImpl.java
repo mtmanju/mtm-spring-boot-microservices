@@ -14,13 +14,13 @@ public class AccountServiceImpl implements AccountService {
 
 	public List<Account> getAccounts() {
 		List<Account> accounts = new ArrayList<>();
-		accounts.add(Account.builder().id(1).customerId(1).number("111111").build());
-		accounts.add(Account.builder().id(2).customerId(2).number("222222").build());
-		accounts.add(Account.builder().id(3).customerId(3).number("333333").build());
-		accounts.add(Account.builder().id(4).customerId(4).number("444444").build());
-		accounts.add(Account.builder().id(5).customerId(1).number("555555").build());
-		accounts.add(Account.builder().id(6).customerId(2).number("666666").build());
-		accounts.add(Account.builder().id(7).customerId(2).number("777777").build());
+		accounts.add(Account.builder().accountId(1).customerId(1).number("111111").build());
+		accounts.add(Account.builder().accountId(2).customerId(2).number("222222").build());
+		accounts.add(Account.builder().accountId(3).customerId(3).number("333333").build());
+		accounts.add(Account.builder().accountId(4).customerId(4).number("444444").build());
+		accounts.add(Account.builder().accountId(5).customerId(1).number("555555").build());
+		accounts.add(Account.builder().accountId(6).customerId(2).number("666666").build());
+		accounts.add(Account.builder().accountId(7).customerId(2).number("777777").build());
 		return accounts;
 	}
 

@@ -1,5 +1,7 @@
 package com.mtm.examples.domain;
 
+import org.springframework.hateoas.ResourceSupport;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,9 +13,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+public class Account extends ResourceSupport {
 
-	private Integer id;
+	private Integer accountId;
 	private String number;
 
 }

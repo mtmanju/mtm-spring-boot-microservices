@@ -1,5 +1,8 @@
 package com.mtm.examples.controller.impl;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,16 +31,21 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	@RequestMapping("/pesel/{pesel}")
 	public Customer findByPesel(@PathVariable("pesel") String pesel) {
 		LOGGER.info(String.format("CustomerServiceControllerImpl.findByPesel(%s)", pesel));
-		return customerService.findByPesel(pesel);
+		Customer customer = customerService.findByPesel(pesel);
+		customer.add(
+				linkTo(methodOn(CustomerServiceControllerImpl.class).findByPesel(customer.getPesel())).withSelfRel());
+		return customer;
 	}
 
 	@Override
-	@RequestMapping("/{id}")
-	public Customer findById(@PathVariable("id") Integer id) {
-		LOGGER.info(String.format("CustomerServiceControllerImpl.findById(%s)", id));
-		Customer customer = customerService.findById(id);
-		List<Account> accounts = accountClient.getAccounts(id);
+	@RequestMapping("/{customerId}")
+	public Customer findByCustomerId(@PathVariable("customerId") Integer customerId) {
+		LOGGER.info(String.format("CustomerServiceControllerImpl.findById(%s)", customerId));
+		Customer customer = customerService.findByCustomerId(customerId);
+		List<Account> accounts = accountClient.getAccounts(customerId);
 		customer.setAccounts(accounts);
+		customer.add(linkTo(methodOn(CustomerServiceControllerImpl.class).findByCustomerId(customer.getCustomerId()))
+				.withSelfRel());
 		return customer;
 	}
 
@@ -45,7 +53,13 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	@RequestMapping
 	public List<Customer> findAll() {
 		LOGGER.info("CustomerServiceControllerImpl.findAll()");
-		return customerService.findAll();
+		List<Customer> customers = customerService.findAll();
+		customers.stream().forEach(customer -> {
+			customer.add(
+					linkTo(methodOn(CustomerServiceControllerImpl.class).findByCustomerId(customer.getCustomerId()))
+							.withSelfRel());
+		});
+		return customers;
 	}
 
 }

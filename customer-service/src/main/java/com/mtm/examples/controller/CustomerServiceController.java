@@ -9,9 +9,9 @@ import com.mtm.examples.domain.Customer;
 @RequestMapping("/customers")
 public interface CustomerServiceController {
 
-	Customer findByPesel(String pesel);
+	Customer findByCustomerId(Integer customerId);
 
-	Customer findById(Integer id);
+	Customer findByPesel(String pesel);
 
 	List<Customer> findAll();
 
