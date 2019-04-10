@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resource;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ public class AccountServiceControllerImpl implements AccountServiceController {
 
 	@Override
 	@RequestMapping
-	public List<Account> findAllAccounts() {
+	public List<Account> findAll() {
 		LOGGER.info("AccountServiceControllerImpl.findAll()");
 		List<Account> accounts = accountService.findAllAccounts();
 		accounts.stream().forEach(account -> {
@@ -36,12 +37,12 @@ public class AccountServiceControllerImpl implements AccountServiceController {
 
 	@Override
 	@RequestMapping("/{number}")
-	public Account findByNumber(@PathVariable("number") String number) {
+	public Resource<Account> findByNumber(@PathVariable("number") String number) {
 		LOGGER.info(String.format("AccountServiceControllerImpl.findByNumber(%s)", number));
 		Account account = accountService.findByAccountNumber(number);
-		account.add(
-				linkTo(methodOn(AccountServiceControllerImpl.class).findByNumber(account.getNumber())).withSelfRel());
-		return account;
+		return new Resource<>(account,
+				linkTo(methodOn(AccountServiceControllerImpl.class).findByNumber(account.getNumber())).withSelfRel(),
+				linkTo(methodOn(AccountServiceControllerImpl.class).findAll()).withRel("accounts"));
 	}
 
 	@Override
@@ -54,7 +55,6 @@ public class AccountServiceControllerImpl implements AccountServiceController {
 					.withSelfRel());
 		});
 		return accounts;
-
 	}
 
 }
