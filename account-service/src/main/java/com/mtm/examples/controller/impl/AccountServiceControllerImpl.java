@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mtm.examples.controller.AccountServiceController;
@@ -24,7 +24,7 @@ public class AccountServiceControllerImpl implements AccountServiceController {
 	private AccountService accountService;
 
 	@Override
-	@RequestMapping
+	@GetMapping
 	public List<Account> findAll() {
 		LOGGER.info("AccountServiceControllerImpl.findAll()");
 		List<Account> accounts = accountService.findAllAccounts();
@@ -36,7 +36,7 @@ public class AccountServiceControllerImpl implements AccountServiceController {
 	}
 
 	@Override
-	@RequestMapping("/{number}")
+	@GetMapping("/{number}")
 	public Resource<Account> findByNumber(@PathVariable("number") String number) {
 		LOGGER.info(String.format("AccountServiceControllerImpl.findByNumber(%s)", number));
 		Account account = accountService.findByAccountNumber(number);
@@ -46,7 +46,7 @@ public class AccountServiceControllerImpl implements AccountServiceController {
 	}
 
 	@Override
-	@RequestMapping("/customer/{customerId}")
+	@GetMapping("/customer/{customerId}")
 	public List<Account> findByCustomerId(@PathVariable("customerId") Integer customerId) {
 		LOGGER.info(String.format("AccountServiceControllerImpl.findByCustomerId(%s)", customerId));
 		List<Account> accounts = accountService.findByCustomerId(customerId);

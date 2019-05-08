@@ -1,5 +1,6 @@
 package com.mtm.examples.controller.impl;
 
+import static com.mtm.examples.constants.CustomerServiceConstants.CUSTOMERS;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -9,7 +10,7 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,17 +33,17 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	private AccountClient accountClient;
 
 	@Override
-	@RequestMapping("/pesel")
+	@GetMapping("/pesel")
 	public Resource<Customer> findByPesel(@RequestParam("pesel") String pesel) {
 		LOGGER.info(String.format("CustomerServiceControllerImpl.findByPesel(%s)", pesel));
 		Customer customer = customerService.findByPesel(pesel);
 		return new Resource<>(customer,
 				linkTo(methodOn(CustomerServiceControllerImpl.class).findByPesel(customer.getPesel())).withSelfRel(),
-				linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel("customers"));
+				linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel(CUSTOMERS));
 	}
 
 	@Override
-	@RequestMapping
+	@GetMapping
 	@HystrixCommand(fallbackMethod = "findCustomersFallback")
 	public Resource<Customer> findCustomersByCustomerId(@RequestParam("customerId") Integer customerId) {
 		LOGGER.info(String.format("CustomerServiceControllerImpl.findByCustomerId(%s)", customerId));
@@ -52,7 +53,7 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 		return new Resource<>(customer,
 				linkTo(methodOn(CustomerServiceControllerImpl.class)
 						.findCustomersByCustomerId(customer.getCustomerId())).withSelfRel(),
-				linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel("customers"));
+				linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel(CUSTOMERS));
 	}
 
 	public Resource<Customer> findCustomersFallback(Integer customerId) {
@@ -61,11 +62,11 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 				Customer.builder().customerId(1).pesel("12345").name("Manjunath").type(CustomerType.INDIVIDUAL).build(),
 				linkTo(methodOn(CustomerServiceControllerImpl.class).findCustomersByCustomerId(customerId))
 						.withSelfRel(),
-				linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel("customers"));
+				linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel(CUSTOMERS));
 	}
 
 	@Override
-	@RequestMapping("/all")
+	@GetMapping("/all")
 	public List<Customer> findAll() {
 		LOGGER.info("CustomerServiceControllerImpl.findAll()");
 		List<Customer> customers = customerService.findAll();
@@ -78,7 +79,7 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	}
 
 	@Override
-	@RequestMapping("/accounts")
+	@GetMapping("/accounts")
 	@HystrixCommand(fallbackMethod = "findAccountsByCustomerIdFallback")
 	public List<Account> findAccountsByCustomerId(@RequestParam("customerId") Integer customerId) {
 		LOGGER.info(String.format("CustomerServiceControllerImpl.findAccountsByCustomerId(%s)", customerId));
