@@ -6,7 +6,6 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -22,9 +21,11 @@ import com.mtm.examples.domain.CustomerType;
 import com.mtm.examples.service.CustomerService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class CustomerServiceControllerImpl implements CustomerServiceController {
-	private static Logger LOGGER = Logger.getLogger(CustomerServiceControllerImpl.class.getName());
 
 	@Autowired
 	private CustomerService customerService;
@@ -35,7 +36,7 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	@Override
 	@GetMapping("/pesel")
 	public Resource<Customer> findByPesel(@RequestParam("pesel") String pesel) {
-		LOGGER.info(String.format("CustomerServiceControllerImpl.findByPesel(%s)", pesel));
+		log.info(String.format("CustomerServiceControllerImpl.findByPesel(%s)", pesel));
 		Customer customer = customerService.findByPesel(pesel);
 		return new Resource<>(customer,
 				linkTo(methodOn(CustomerServiceControllerImpl.class).findByPesel(customer.getPesel())).withSelfRel(),
@@ -46,7 +47,7 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	@GetMapping
 	@HystrixCommand(fallbackMethod = "findCustomersFallback")
 	public Resource<Customer> findCustomersByCustomerId(@RequestParam("customerId") Integer customerId) {
-		LOGGER.info(String.format("CustomerServiceControllerImpl.findByCustomerId(%s)", customerId));
+		log.info(String.format("CustomerServiceControllerImpl.findByCustomerId(%s)", customerId));
 		Customer customer = customerService.findByCustomerId(customerId);
 		List<Account> accounts = findAccountsByCustomerId(customerId);
 		customer.setAccounts(accounts);
@@ -57,7 +58,7 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	}
 
 	public Resource<Customer> findCustomersFallback(Integer customerId) {
-		LOGGER.info(String.format("CustomerServiceControllerImpl.findCustomersFallback(%s)", customerId));
+		log.info(String.format("CustomerServiceControllerImpl.findCustomersFallback(%s)", customerId));
 		return new Resource<>(
 				Customer.builder().customerId(1).pesel("12345").name("Manjunath").type(CustomerType.INDIVIDUAL).build(),
 				linkTo(methodOn(CustomerServiceControllerImpl.class).findCustomersByCustomerId(customerId))
@@ -68,13 +69,11 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	@Override
 	@GetMapping("/all")
 	public List<Customer> findAll() {
-		LOGGER.info("CustomerServiceControllerImpl.findAll()");
+		log.info("CustomerServiceControllerImpl.findAll()");
 		List<Customer> customers = customerService.findAll();
-		customers.stream().forEach(customer -> {
-			customer.add(linkTo(
-					methodOn(CustomerServiceControllerImpl.class).findCustomersByCustomerId(customer.getCustomerId()))
-							.withSelfRel());
-		});
+		customers.stream().forEach(customer -> customer.add(linkTo(
+				methodOn(CustomerServiceControllerImpl.class).findCustomersByCustomerId(customer.getCustomerId()))
+						.withSelfRel()));
 		return customers;
 	}
 
@@ -82,12 +81,12 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 	@GetMapping("/accounts")
 	@HystrixCommand(fallbackMethod = "findAccountsByCustomerIdFallback")
 	public List<Account> findAccountsByCustomerId(@RequestParam("customerId") Integer customerId) {
-		LOGGER.info(String.format("CustomerServiceControllerImpl.findAccountsByCustomerId(%s)", customerId));
+		log.info(String.format("CustomerServiceControllerImpl.findAccountsByCustomerId(%s)", customerId));
 		return accountClient.getAccounts(customerId);
 	}
 
 	public List<Account> findAccountsByCustomerIdFallback(Integer customerId) {
-		LOGGER.info(String.format("CustomerServiceControllerImpl.findAccountsByCustomerIdFallback(%s)", customerId));
+		log.info(String.format("CustomerServiceControllerImpl.findAccountsByCustomerIdFallback(%s)", customerId));
 		List<Account> accounts = new ArrayList<>();
 		accounts.add(Account.builder().accountId(1).number("123456").build());
 		return accounts;

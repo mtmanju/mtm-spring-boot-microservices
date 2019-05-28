@@ -2,6 +2,7 @@ package com.mtm.examples.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -25,9 +26,9 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account findByAccountNumber(String accountNumber) {
-		return getAccounts().parallelStream().filter(account -> account.getNumber().equals(accountNumber)).findFirst()
-				.get();
+	public Account findByAccountNumber(String accNumber) {
+		Optional<Account> account = getAccounts().stream().filter(acc -> accNumber.equals(acc.getNumber())).findFirst();
+		return account.isPresent() ? account.get() : null;
 	}
 
 	@Override

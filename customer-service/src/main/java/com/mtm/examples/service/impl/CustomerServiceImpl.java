@@ -2,6 +2,7 @@ package com.mtm.examples.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -27,13 +28,16 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer findByPesel(String pesel) {
-		return getCustomers().parallelStream().filter(account -> account.getPesel().equals(pesel)).findFirst().get();
+		Optional<Customer> customer = getCustomers().parallelStream()
+				.filter(account -> account.getPesel().equals(pesel)).findFirst();
+		return customer.isPresent() ? customer.get() : null;
 	}
 
 	@Override
 	public Customer findByCustomerId(Integer customerId) {
-		return getCustomers().stream().filter(account -> account.getCustomerId().intValue() == customerId.intValue())
-				.findFirst().get();
+		Optional<Customer> customer = getCustomers().stream()
+				.filter(account -> account.getCustomerId().intValue() == customerId.intValue()).findFirst();
+		return customer.isPresent() ? customer.get() : null;
 	}
 
 	@Override
