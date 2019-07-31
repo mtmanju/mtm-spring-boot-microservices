@@ -15,10 +15,11 @@
 	</parent>
 
 	<properties>
-		<spring.boot>2.1.3.RELEASE</spring.boot>
+		<spring.boot>2.1.6.RELEASE</spring.boot>
 		<spring.cloud>1.4.6.RELEASE</spring.cloud>
 		<java.version>1.8</java.version>
 		<springfox.version>2.8.0</springfox.version>
+		<spring.shell>2.0.1.RELEASE</spring.shell>
 		<zipkin>2.10.1</zipkin>
 	</properties>
 
@@ -28,6 +29,7 @@
 		<module>service-discovery</module>
 		<module>api-gateway</module>
 		<module>zipkin-tracing</module>
+		<module>spring-shell</module>
 	</modules>
 
 </project>

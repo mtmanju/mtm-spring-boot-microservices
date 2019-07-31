@@ -1,0 +1,8 @@
+server:  
+  port: ${PORT:8392}
+  
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: spring-shell
