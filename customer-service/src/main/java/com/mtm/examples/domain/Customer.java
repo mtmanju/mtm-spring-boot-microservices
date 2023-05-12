@@ -1,15 +1,9 @@
 package com.mtm.examples.domain;
 
+import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.util.List;
-
-import org.springframework.hateoas.ResourceSupport;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Builder(toBuilder = true)
 @Getter
@@ -17,12 +11,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Customer extends ResourceSupport {
+public class Customer extends RepresentationModel {
 
-	private Integer customerId;
-	private String pesel;
-	private String name;
-	private CustomerType type;
-	private List<Account> accounts;
+    private Integer customerId;
+    private String pesel;
+    private String name;
+    private CustomerType type;
+    private List<Account> accounts;
 
 }
