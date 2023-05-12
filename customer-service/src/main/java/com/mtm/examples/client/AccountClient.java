@@ -1,12 +1,11 @@
 package com.mtm.examples.client;
 
-import java.util.List;
-
+import com.mtm.examples.domain.Account;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.mtm.examples.domain.Account;
+import java.util.List;
 
 @FeignClient("account-service")
 public interface AccountClient {

@@ -1,14 +1,13 @@
 package com.mtm.examples.service.impl;
 
+import com.mtm.examples.domain.Account;
+import com.mtm.examples.service.AccountService;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
-import com.mtm.examples.domain.Account;
-import com.mtm.examples.service.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService {

@@ -1,8 +1,8 @@
 package com.mtm.examples.service;
 
-import java.util.List;
-
 import com.mtm.examples.domain.Customer;
+
+import java.util.List;
 
 public interface CustomerService {
 
