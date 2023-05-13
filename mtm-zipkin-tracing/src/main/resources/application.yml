@@ -1,6 +1,6 @@
-server:  
+server:
   port: ${PORT:8763}
-  
+
 spring:
   main:
     allow-bean-definition-overriding: true

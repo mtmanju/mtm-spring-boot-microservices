@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Bean;
 @EnableZuulProxy
 public class APIGatewayServiceBoot {
 
-	public static void main(String[] args) {
-		SpringApplication.run(APIGatewayServiceBoot.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(APIGatewayServiceBoot.class, args);
+    }
 
-	@Bean
-	public Sampler defaultSampler() {
-		return Sampler.ALWAYS_SAMPLE;
-	}
+    @Bean
+    public Sampler defaultSampler() {
+        return Sampler.ALWAYS_SAMPLE;
+    }
 }

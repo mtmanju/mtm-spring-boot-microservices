@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface AccountService {
 
-	public Account findByAccountNumber(String accountNumber);
+    public Account findByAccountNumber(String accountNumber);
 
-	public List<Account> findByCustomerId(Integer customerId);
+    public List<Account> findByCustomerId(Integer customerId);
 
-	public List<Account> findAllAccounts();
+    public List<Account> findAllAccounts();
 
 }

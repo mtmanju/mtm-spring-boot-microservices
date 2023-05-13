@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface CustomerService {
 
-	public Customer findByPesel(String pesel);
+    public Customer findByPesel(String pesel);
 
-	public Customer findByCustomerId(Integer customerId);
+    public Customer findByCustomerId(Integer customerId);
 
-	public List<Customer> findAll();
+    public List<Customer> findAll();
 
 }

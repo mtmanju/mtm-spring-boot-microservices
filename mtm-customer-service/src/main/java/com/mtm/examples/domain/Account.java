@@ -11,7 +11,7 @@ import org.springframework.hateoas.RepresentationModel;
 @EqualsAndHashCode(callSuper = true)
 public class Account extends RepresentationModel {
 
-	private Integer accountId;
-	private String number;
+    private Integer accountId;
+    private String number;
 
 }

@@ -1,7 +1,7 @@
-server:  
+server:
   port: ${PORT:8761}
-    
-eureka:  
+
+eureka:
   instance:
     hostname: 127.0.0.1
   client:

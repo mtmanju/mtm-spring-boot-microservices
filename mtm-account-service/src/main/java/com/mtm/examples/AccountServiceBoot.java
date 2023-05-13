@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Bean;
 @EnableDiscoveryClient
 public class AccountServiceBoot {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AccountServiceBoot.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AccountServiceBoot.class, args);
+    }
 
-	@Bean
-	public Sampler defaultSampler() {
-		return Sampler.ALWAYS_SAMPLE;
-	}
+    @Bean
+    public Sampler defaultSampler() {
+        return Sampler.ALWAYS_SAMPLE;
+    }
 
 }

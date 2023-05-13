@@ -8,7 +8,7 @@ import zipkin.server.internal.EnableZipkinServer;
 @EnableZipkinServer
 public class ZipkinTracingServiceBoot {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ZipkinTracingServiceBoot.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ZipkinTracingServiceBoot.class, args);
+    }
 }
