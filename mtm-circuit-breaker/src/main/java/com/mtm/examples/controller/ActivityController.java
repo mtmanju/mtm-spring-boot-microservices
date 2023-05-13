@@ -1,6 +1,7 @@
 package com.mtm.examples.controller;
 
 import com.mtm.examples.dto.ActivityDto;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,18 +20,23 @@ import org.springframework.web.client.RestTemplate;
 public class ActivityController {
 
     @Value("${boredapi.activity.url:http://www.boredapi.com/api/activity/}")
-    private String boredApiActitiyUrl;
+    String boredApiActitiyUrl;
 
     @Autowired
-    private RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     @GetMapping
-    private String getActivity() {
+    @CircuitBreaker(name = "randomActivity", fallbackMethod = "fallbackRandomActivity")
+    private String getRandomActivity() {
         ResponseEntity<ActivityDto> responseEntity = restTemplate.getForEntity(boredApiActitiyUrl, ActivityDto.class);
         ActivityDto activityDto = responseEntity.getBody();
         String activity = null != activityDto ? activityDto.getActivity() : "";
         log.info("Activity Received: {}", activity);
         return activity;
+    }
+
+    public String fallbackRandomActivity(Throwable throwable) {
+        return "Hello world !!!";
     }
 
 }
