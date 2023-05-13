@@ -2,7 +2,7 @@ server:
   port: ${PORT:8192}
 spring:
   application:
-    name: customer-service
+    name: mtm-customer-service
 
 eureka:  
   client:

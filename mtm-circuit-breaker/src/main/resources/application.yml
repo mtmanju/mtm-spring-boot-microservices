@@ -1,0 +1,5 @@
+server:
+  port: ${PORT:8197}
+spring:
+  application:
+    name: mtm-circuit-breaker
