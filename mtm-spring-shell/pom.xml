@@ -2,31 +2,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>zipkin-tracing</artifactId>
-	<name>zipkin-tracing</name>
-	<description>Microservices project for Spring Boot</description>
+	<artifactId>mtm-spring-shell</artifactId>
+	<name>mtm-spring-shell</name>
+	<description>MTM Spring Shell</description>
 
 	<parent>
 		<groupId>com.mtm.examples</groupId>
-		<artifactId>microservice-example</artifactId>
+		<artifactId>mtm-microservices</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
 	<dependencies>
 		<dependency>
-			<groupId>io.zipkin.java</groupId>
-			<artifactId>zipkin-server</artifactId>
-			<version>${zipkin}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.zipkin.java</groupId>
-			<artifactId>zipkin</artifactId>
-			<version>${zipkin}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.zipkin.java</groupId>
-			<artifactId>zipkin-autoconfigure-ui</artifactId>
-			<version>${zipkin}</version>
+			<groupId>org.springframework.shell</groupId>
+			<artifactId>spring-shell-starter</artifactId>
+			<version>${spring.shell}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,13 +42,13 @@
 	</dependencies>
 
 	<build>
-		<finalName>zipkin-tracing</finalName>
+		<finalName>spring-shell</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.mtm.examples.ZipkinTracingServiceBoot</mainClass>
+					<mainClass>com.mtm.examples.SpringShellBoot</mainClass>
 					<addResources>true</addResources>
 				</configuration>
 				<executions>
