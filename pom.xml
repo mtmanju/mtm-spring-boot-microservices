@@ -19,7 +19,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <spring.shell>2.0.1.RELEASE</spring.shell>
+        <spring.shell>3.0.1</spring.shell>
         <springfox.version>3.0.0</springfox.version>
         <zipkin>2.10.1</zipkin>
     </properties>
