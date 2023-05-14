@@ -28,7 +28,7 @@ public class ActivityController {
 	}
 
 	public String fallbackRandomActivity(Throwable throwable) {
-		return "Hello world !!!";
+		return "Fallback Activity !!!";
 	}
 
 }
