@@ -31,3 +31,4 @@ classes
 /spring-shell/*.classpath
 mvnw
 /sample-service/mvnw.cmd
+*.classpath

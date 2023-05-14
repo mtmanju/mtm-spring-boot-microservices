@@ -5,11 +5,7 @@ spring:
     name: mtm-circuit-breaker
   jackson:
     serialization:
-      indent_output: true
-
-boredapi:
-  activity:
-    url: http://www.boredapi.com/api/activity/
+      indent-output: true
 
 management:
   endpoints.web.exposure.include:
@@ -28,4 +24,8 @@ resilience4j.circuitbreaker:
       waitDurationInOpenState: 5s
       failureRateThreshold: 50
       eventConsumerBufferSize: 10
+      
+boredapi:
+  activity:
+    url: http://www.boredapi.com/api/activity/
 
