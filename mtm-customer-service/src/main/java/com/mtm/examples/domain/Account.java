@@ -9,7 +9,7 @@ import org.springframework.hateoas.RepresentationModel;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Account extends RepresentationModel {
+public class Account extends RepresentationModel<Account> {
 
     private Integer accountId;
     private String number;

@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Customer extends RepresentationModel {
+public class Customer extends RepresentationModel<Customer> {
 
     private Integer customerId;
     private String pesel;
