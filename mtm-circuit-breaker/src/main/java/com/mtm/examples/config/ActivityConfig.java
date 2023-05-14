@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author Manjunath M T
  * @since 14-May-2023
- *
  */
 @Getter
 @Configuration
