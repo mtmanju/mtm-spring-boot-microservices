@@ -23,7 +23,7 @@ public class ActivityController {
 
 	@GetMapping
 	@CircuitBreaker(name = "randomActivity", fallbackMethod = "fallbackRandomActivity")
-	private String randomActivity() {
+	public String randomActivity() {
 		return activityService.getRandomActivity();
 	}
 

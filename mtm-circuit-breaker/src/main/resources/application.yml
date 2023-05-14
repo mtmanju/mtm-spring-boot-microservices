@@ -22,8 +22,8 @@ management:
 
 resilience4j:
   circuitbreaker:
-    instances:
-      randomActivity:
+    configs:
+      default:
          registerHealthIndicator: true
          slidingWindowSize: 10
          minimumNumberOfCalls: 5
