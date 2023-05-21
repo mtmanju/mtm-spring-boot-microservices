@@ -9,9 +9,9 @@
     </parent>
 
     <groupId>com.mtm.examples</groupId>
-    <artifactId>mtm-microservices</artifactId>
+    <artifactId>mtm-spring-boot-microservices</artifactId>
     <version>1.0</version>
-    <description>MTM Microservices</description>
+    <description>MTM Spring Boot Microservices</description>
     <packaging>pom</packaging>
 
     <properties>
@@ -122,7 +122,6 @@
                 <artifactId>junit-platform-runner</artifactId>
                 <version>1.9.3</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
