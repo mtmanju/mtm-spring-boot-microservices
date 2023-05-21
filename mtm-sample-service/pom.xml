@@ -9,7 +9,7 @@
 
     <parent>
         <groupId>com.mtm.examples</groupId>
-        <artifactId>mtm-microservices</artifactId>
+        <artifactId>mtm-spring-boot-microservices</artifactId>
         <version>1.0</version>
     </parent>
 
