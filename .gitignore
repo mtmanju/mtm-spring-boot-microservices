@@ -27,11 +27,9 @@ idea
 .idea
 META-INF
 classes
-/spring-shell/target
-/spring-shell/*.classpath
 mvnw
-/sample-service/mvnw.cmd
 *.classpath
 maven-archiver
-/mtm-sample-service/target/*
 default-compile
+/mtm-sample-service/target/*
+/mtm-spring-shell/target/*
