@@ -34,6 +34,7 @@
         <module>mtm-spring-shell</module>
         <module>mtm-circuit-breaker</module>
         <module>mtm-sample-service</module>
+		<module>mtm-reactive-couchbase-service</module>
     </modules>
 
     <dependencyManagement>
