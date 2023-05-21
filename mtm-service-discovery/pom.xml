@@ -31,7 +31,7 @@
     </dependencies>
 
     <build>
-        <finalName>service-discovery</finalName>
+        <finalName>mtm-service-discovery</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

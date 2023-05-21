@@ -30,7 +30,7 @@
     </dependencies>
 
     <build>
-        <finalName>spring-shell</finalName>
+        <finalName>mtm-spring-shell</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

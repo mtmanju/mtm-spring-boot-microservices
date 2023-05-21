@@ -33,7 +33,7 @@
         <module>mtm-zipkin-tracing</module>
         <module>mtm-spring-shell</module>
         <module>mtm-circuit-breaker</module>
-        <module>mtm-other-services</module>
+        <module>mtm-sample-service</module>
     </modules>
 
     <dependencyManagement>

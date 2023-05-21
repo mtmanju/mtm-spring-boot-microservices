@@ -42,7 +42,7 @@
     </dependencies>
 
     <build>
-        <finalName>zipkin-tracing</finalName>
+        <finalName>mtm-zipkin-tracing</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

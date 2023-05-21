@@ -33,5 +33,5 @@ mvnw
 /sample-service/mvnw.cmd
 *.classpath
 maven-archiver
-/mtm-other-services/target/*
+/mtm-sample-service/target/*
 default-compile
