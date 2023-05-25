@@ -8,7 +8,6 @@
 		<version>1.0</version>
 	</parent>
 
-	<groupId>com.mtm.examples</groupId>
 	<artifactId>mtm-ff4j-examples</artifactId>
 	<name>mtm-ff4j-examples</name>
 	<description>MTM FF4J examples - feature flags</description>
