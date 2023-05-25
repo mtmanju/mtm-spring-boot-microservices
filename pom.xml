@@ -35,6 +35,7 @@
         <module>mtm-circuit-breaker</module>
         <module>mtm-sample-service</module>
 		<module>mtm-reactive-couchbase-service</module>
+        <module>mtm-ff4j-examples</module>
     </modules>
 
     <dependencyManagement>
