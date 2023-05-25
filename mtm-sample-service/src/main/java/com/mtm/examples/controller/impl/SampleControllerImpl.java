@@ -26,7 +26,7 @@ public class SampleControllerImpl implements SampleController {
 
     @Override
     public Mono<ResponseEntity<Object>> saveData(@RequestBody SampleData request) {
-        log.info("SpringBootExamplesControllerImpl.saveData() -->");
+        log.info("SampleControllerImpl.saveData() -->");
         return sampleService2.saveData(request).map(savedData -> new ResponseEntity<Object>(savedData, HttpStatus.OK))
                 .onErrorResume(exception -> {
                     log.error(exception.getMessage());
@@ -37,12 +37,12 @@ public class SampleControllerImpl implements SampleController {
                         response = new ResponseEntity<>(((CustomException) exception).getErrorMessage(),
                                 ((CustomException) exception).getHttpStatusCode());
                     return Mono.just(response);
-                }).doOnSuccess(reponse -> log.info("<-- SpringBootExamplesControllerImpl.saveData()"));
+                }).doOnSuccess(response -> log.info("<-- SampleControllerImpl.saveData()"));
     }
 
     @Override
     public Mono<ResponseEntity<Object>> getCompleteData() {
-        log.info("SpringBootExamplesControllerImpl.getCompleteData() -->");
+        log.info("SampleControllerImpl.getCompleteData() -->");
         return sampleService2.getData().map(savedData -> new ResponseEntity<Object>(savedData, HttpStatus.OK))
                 .onErrorResume(exception -> {
                     log.error(exception.getMessage());
@@ -53,7 +53,7 @@ public class SampleControllerImpl implements SampleController {
                         response = new ResponseEntity<>(((CustomException) exception).getErrorMessage(),
                                 ((CustomException) exception).getHttpStatusCode());
                     return Mono.just(response);
-                }).doOnSuccess(reponse -> log.info("<-- SpringBootExamplesControllerImpl.getCompleteData()"));
+                }).doOnSuccess(response -> log.info("<-- v.getCompleteData()"));
     }
 
     @Override
@@ -76,7 +76,7 @@ public class SampleControllerImpl implements SampleController {
 
     @Override
     public Mono<ResponseEntity<Object>> calculateFuturesOptionsCharges(MultipartFile file) {
-        log.info("SpringBootExamplesControllerImpl.saveData() -->");
+        log.info("SampleControllerImpl.saveData() -->");
         return sampleService2.calculateFOCharges(file)
                 .map(savedData -> new ResponseEntity<Object>(savedData, HttpStatus.OK)).onErrorResume(exception -> {
                     log.error(exception.getMessage());
@@ -87,7 +87,7 @@ public class SampleControllerImpl implements SampleController {
                         response = new ResponseEntity<>(((CustomException) exception).getErrorMessage(),
                                 ((CustomException) exception).getHttpStatusCode());
                     return Mono.just(response);
-                }).doOnSuccess(reponse -> log.info("<-- SpringBootExamplesControllerImpl.saveData()"));
+                }).doOnSuccess(response -> log.info("<-- SampleControllerImpl.saveData()"));
 
     }
 
