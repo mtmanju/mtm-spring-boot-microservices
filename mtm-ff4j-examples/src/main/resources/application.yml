@@ -1,0 +1,8 @@
+server:
+  port: ${PORT:8198}
+  servlet:
+    context-path: /ff4j
+
+spring:
+  application:
+    name: mtm-ff4j-examples
