@@ -40,6 +40,7 @@
 		<module>mtm-kafka-producer</module>
 		<module>mtm-kafka-examples</module>
 		<module>mtm-solr-search-examples</module>
+		<module>mtm-saga-choreography</module>
 	</modules>
 
 	<dependencyManagement>
