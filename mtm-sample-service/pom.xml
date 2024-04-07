@@ -99,7 +99,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.mtm.examples.SampleServiceApplication</mainClass>
+                    <mainClass>com.mtm.examples.examples.SampleServiceApplication</mainClass>
                     <addResources>true</addResources>
                 </configuration>
                 <executions>

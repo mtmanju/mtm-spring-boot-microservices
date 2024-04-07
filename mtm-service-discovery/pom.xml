@@ -37,7 +37,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.mtm.examples.DiscoveryServiceBoot</mainClass>
+                    <mainClass>com.mtm.examples.servicediscovery.DiscoveryServiceBoot</mainClass>
                     <addResources>true</addResources>
                 </configuration>
                 <executions>

@@ -36,7 +36,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.mtm.examples.SpringShellBoot</mainClass>
+                    <mainClass>com.mtm.examples.springshell.SpringShellBoot</mainClass>
                     <addResources>true</addResources>
                 </configuration>
                 <executions>

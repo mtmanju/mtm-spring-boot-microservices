@@ -58,7 +58,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.mtm.examples.ReactiveCouchbaseApplication</mainClass>
+					<mainClass>com.mtm.examples.reactive.couchbase.ReactiveCouchbaseApplication</mainClass>
 					<addResources>true</addResources>
 				</configuration>
 				<executions>

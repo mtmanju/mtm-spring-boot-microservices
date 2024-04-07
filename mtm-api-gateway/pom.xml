@@ -63,7 +63,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.mtm.examples.APIGatewayServiceBoot</mainClass>
+                    <mainClass>com.mtm.examples.apigateway.APIGatewayServiceBoot</mainClass>
                     <addResources>true</addResources>
                 </configuration>
                 <executions>

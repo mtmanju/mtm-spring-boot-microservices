@@ -94,7 +94,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.mtm.examples.AccountServiceBoot</mainClass>
+                    <mainClass>com.mtm.examples.accounts.AccountServiceBoot</mainClass>
                     <addResources>true</addResources>
                 </configuration>
                 <executions>
