@@ -94,7 +94,8 @@ public class SampleServiceImpl2 implements SampleService {
         return Mono.just(SampleData.builder().description("Hello").build());
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public Mono<Object> getData() {
         log.info("SampleServiceImpl2.getData() -->");
         log.info("Base URL:" + config.getBaseUrl());
