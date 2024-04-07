@@ -10,7 +10,6 @@
 		<groupId>com.mtm.examples</groupId>
 		<artifactId>mtm-spring-boot-microservices</artifactId>
 		<version>1.0</version>
-		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
