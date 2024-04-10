@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.0</version>
+		<version>3.2.4</version>
 	</parent>
 
 	<groupId>com.mtm.examples</groupId>
@@ -35,12 +35,13 @@
 		<module>mtm-spring-shell</module>
 		<module>mtm-circuit-breaker</module>
 		<module>mtm-sample-service</module>
-		<module>mtm-reactive-couchbase-service</module>
 		<module>mtm-ff4j-examples</module>
 		<module>mtm-kafka-producer</module>
 		<module>mtm-kafka-examples</module>
 		<module>mtm-solr-search-examples</module>
 		<module>mtm-saga-choreography</module>
+		<module>mtm-graphql-service</module>
+		<!--<module>mtm-reactive-couchbase-service</module>-->
 	</modules>
 
 	<dependencyManagement>

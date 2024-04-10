@@ -33,3 +33,4 @@ maven-archiver
 default-compile
 /mtm-sample-service/target/*
 /mtm-spring-shell/target/*
+*.factorypath
