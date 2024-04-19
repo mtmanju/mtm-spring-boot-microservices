@@ -18,7 +18,7 @@ public class MovieDto implements Serializable {
 	private String movieName;
 	private String leadActor;
 	private String leadActress;
-	private String genere;
+	private String genre;
 	private String producer;
 	private String director;
 	private Double imdbRating;

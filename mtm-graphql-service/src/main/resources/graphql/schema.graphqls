@@ -1,0 +1,30 @@
+type Query{
+	getAllMovies:[Movie]
+	getMovieByMovieName(moviename:String):Movie
+}
+
+type Movie{
+	id:ID
+	movieName:String
+	leadActor:String
+	leadActress:String
+	genre:String
+	producer:String
+	director:String
+	imdbRating:Float
+}
+
+
+type Mutation{
+	createMovie(movieDto:MovieDto):Movie
+}
+
+input MovieDto{
+	movieName:String
+	leadActor:String
+	leadActress:String
+	genre:String
+	producer:String
+	director:String
+	imdbRating:Float
+}

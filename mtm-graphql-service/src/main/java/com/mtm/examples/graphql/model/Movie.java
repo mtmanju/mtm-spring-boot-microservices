@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(toBuilder = true)
 public class Movie implements Serializable {
 
 	private static final long serialVersionUID = 3580483023304980589L;
@@ -31,7 +33,7 @@ public class Movie implements Serializable {
 	private String movieName;
 	private String leadActor;
 	private String leadActress;
-	private String genere;
+	private String genre;
 	private String producer;
 	private String director;
 	private Double imdbRating;

@@ -8,4 +8,6 @@ import com.mtm.examples.graphql.model.Movie;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
+	public Movie findTopByMovieNameIgnoreCase(String movieName);
+
 }
