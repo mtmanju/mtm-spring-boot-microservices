@@ -1,4 +1,4 @@
-package com.mtm.examples.examples.service;
+package com.mtm.examples.circuitbreaker.service;
 
 import com.mtm.examples.circuitbreaker.config.ActivityConfig;
 import com.mtm.examples.circuitbreaker.dto.ActivityDto;

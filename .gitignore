@@ -34,3 +34,7 @@ default-compile
 /mtm-sample-service/target/*
 /mtm-spring-shell/target/*
 *.factorypath
+/mtm-springboot-timelimiting/.mvn/wrapper
+/mtm-springboot-timelimiting/mvnw.cmd
+/mtm-springboot-ratelimiting/mvnw.cmd
+/mtm-springboot-ratelimiting/.mvn/wrapper

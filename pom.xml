@@ -24,6 +24,7 @@
 		<springfox.version>3.0.0</springfox.version>
 		<zipkin>2.12.9</zipkin>
 		<spring.data.solr.version>2.4.3</spring.data.solr.version>
+		<spring-cloud.version>2023.0.1</spring-cloud.version>
 	</properties>
 
 	<modules>
@@ -41,11 +42,20 @@
 		<module>mtm-solr-search-examples</module>
 		<module>mtm-saga-choreography</module>
 		<module>mtm-graphql-service</module>
+		<module>mtm-springboot-ratelimiting</module>
+		<module>mtm-springboot-timelimiting</module>
 		<!--<module>mtm-reactive-couchbase-service</module>-->
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>io.awspring.cloud</groupId>
 				<artifactId>spring-cloud-aws-dependencies</artifactId>

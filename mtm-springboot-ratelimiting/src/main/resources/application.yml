@@ -2,7 +2,7 @@ server:
   port: ${PORT:8197}
 spring:
   application:
-    name: mtm-circuit-breaker
+    name: mtm-springboot-ratelimiting
   jackson:
     serialization:
       indent-output: true
