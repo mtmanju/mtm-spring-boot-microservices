@@ -38,3 +38,4 @@ default-compile
 /mtm-springboot-timelimiting/mvnw.cmd
 /mtm-springboot-ratelimiting/mvnw.cmd
 /mtm-springboot-ratelimiting/.mvn/wrapper
+.vscode

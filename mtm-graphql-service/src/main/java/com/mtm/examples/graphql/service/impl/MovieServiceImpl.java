@@ -2,35 +2,39 @@ package com.mtm.examples.graphql.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mtm.examples.graphql.dto.MovieDto;
 import com.mtm.examples.graphql.model.Movie;
 import com.mtm.examples.graphql.repo.MovieRepository;
 import com.mtm.examples.graphql.service.MovieService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class MovieServiceImpl implements MovieService {
 
-	@Autowired
-	MovieRepository movieRepository;
+	private final MovieRepository movieRepository;
+
+	public MovieServiceImpl(MovieRepository movieRepository) {
+		this.movieRepository = movieRepository;
+	}
 
 	@Override
 	public List<Movie> getAllMovies() {
+		log.info("Fetching all movies");
 		return movieRepository.findAll();
 	}
 
 	@Override
 	public Movie getMovieByMovieName(String movieName) {
+		log.info("Fetching movie by name: {}", movieName);
 		return movieRepository.findTopByMovieNameIgnoreCase(movieName);
 	}
 
 	@Override
 	public Movie createMovie(MovieDto movieDto) {
-		if (null == movieDto) {
-			throw new RuntimeException("movie details are madatory to create a movie in movie database.");
-		}
+		log.info("Creating new movie: {}", movieDto.getMovieName());
 		return movieRepository.save(prepareMovieFromMovieDto(movieDto));
 	}
 

@@ -2,7 +2,6 @@ package com.mtm.examples.graphql.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -15,8 +14,11 @@ import com.mtm.examples.graphql.service.MovieService;
 @Controller
 public class MovieGraphqlController {
 
-	@Autowired
-	MovieService movieService;
+	private final MovieService movieService;
+
+	public MovieGraphqlController(MovieService movieService) {
+		this.movieService = movieService;
+	}
 
 	@QueryMapping("getAllMovies")
 	public List<Movie> getAllMovies() {

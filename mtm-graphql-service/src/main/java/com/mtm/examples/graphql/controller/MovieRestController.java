@@ -2,7 +2,6 @@ package com.mtm.examples.graphql.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +17,11 @@ import com.mtm.examples.graphql.service.MovieService;
 @RequestMapping("/rest/api/movies")
 public class MovieRestController {
 
-	@Autowired
-	MovieService movieService;
+	private final MovieService movieService;
+
+	public MovieRestController(MovieService movieService) {
+		this.movieService = movieService;
+	}
 
 	@GetMapping
 	public List<Movie> getAllMovies() {
