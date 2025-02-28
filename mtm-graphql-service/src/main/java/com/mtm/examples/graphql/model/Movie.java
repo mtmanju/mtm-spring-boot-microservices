@@ -27,15 +27,28 @@ public class Movie implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 
-	@Column
+	@Column(name = "movie_name")
 	private String movieName;
+
+	@Column(name = "lead_actor")
 	private String leadActor;
+
+	@Column(name = "lead_actress")
 	private String leadActress;
+
+	@Column(name = "genre")
 	private String genre;
+
+	@Column(name = "producer")
 	private String producer;
+
+	@Column(name = "director")
 	private String director;
+
+	@Column(name = "imdb_rating")
 	private Double imdbRating;
 
 }

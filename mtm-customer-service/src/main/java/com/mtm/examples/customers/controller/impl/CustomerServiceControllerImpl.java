@@ -19,13 +19,15 @@ import com.mtm.examples.customers.domain.Account;
 import com.mtm.examples.customers.domain.Customer;
 import com.mtm.examples.customers.domain.CustomerType;
 import com.mtm.examples.customers.service.CustomerService;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 public class CustomerServiceControllerImpl implements CustomerServiceController {
+
+    private static final String CUSTOMER_SERVICE = "customerService";
 
     @Autowired
     private CustomerService customerService;
@@ -45,7 +47,7 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 
     @Override
     @GetMapping
-    @HystrixCommand(fallbackMethod = "findCustomersFallback")
+    @CircuitBreaker(name = CUSTOMER_SERVICE, fallbackMethod = "findCustomersFallback")
     public EntityModel<Customer> findCustomersByCustomerId(@RequestParam("customerId") Integer customerId) {
         log.info(String.format("CustomerServiceControllerImpl.findByCustomerId(%s)", customerId));
         Customer customer = customerService.findByCustomerId(customerId);
@@ -56,9 +58,11 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
                 .add(linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel(CUSTOMERS));
     }
 
-    public EntityModel<Customer> findCustomersFallback(Integer customerId) {
+    public EntityModel<Customer> findCustomersFallback(Integer customerId, Exception ex) {
         log.info(String.format("CustomerServiceControllerImpl.findCustomersFallback(%s)", customerId));
-        return EntityModel.of(Customer.builder().customerId(1).pesel("12345").name("Manjunath").type(CustomerType.INDIVIDUAL).build()).add(linkTo(methodOn(CustomerServiceControllerImpl.class).findCustomersByCustomerId(customerId)).withSelfRel()).add(linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel(CUSTOMERS));
+        return EntityModel.of(Customer.builder().customerId(1).pesel("12345").name("Manjunath").type(CustomerType.INDIVIDUAL).build())
+                .add(linkTo(methodOn(CustomerServiceControllerImpl.class).findCustomersByCustomerId(customerId)).withSelfRel())
+                .add(linkTo(methodOn(CustomerServiceControllerImpl.class).findAll()).withRel(CUSTOMERS));
     }
 
     @Override
@@ -74,13 +78,13 @@ public class CustomerServiceControllerImpl implements CustomerServiceController 
 
     @Override
     @GetMapping("/accounts")
-    @HystrixCommand(fallbackMethod = "findAccountsByCustomerIdFallback")
+    @CircuitBreaker(name = CUSTOMER_SERVICE, fallbackMethod = "findAccountsByCustomerIdFallback")
     public List<Account> findAccountsByCustomerId(@RequestParam("customerId") Integer customerId) {
         log.info(String.format("CustomerServiceControllerImpl.findAccountsByCustomerId(%s)", customerId));
         return accountClient.getAccounts(customerId);
     }
 
-    public List<Account> findAccountsByCustomerIdFallback(Integer customerId) {
+    public List<Account> findAccountsByCustomerIdFallback(Integer customerId, Exception ex) {
         log.info(String.format("CustomerServiceControllerImpl.findAccountsByCustomerIdFallback(%s)", customerId));
         List<Account> accounts = new ArrayList<>();
         accounts.add(Account.builder().accountId(1).number("123456").build());

@@ -1,19 +1,16 @@
 package com.mtm.examples.graphql.mapper;
 
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
 import com.mtm.examples.graphql.dto.MovieDto;
 import com.mtm.examples.graphql.model.Movie;
 
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.ConfigurableMapper;
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+public interface MovieMapper {
 
-@Component
-public class MovieMapper extends ConfigurableMapper {
-
-	@Override
-	protected void configure(MapperFactory factory) {
-		factory.classMap(Movie.class, MovieDto.class).byDefault().register();
-	}
-
+	MovieDto toDto(Movie movie);
+	
+	Movie toEntity(MovieDto movieDto);
+	
 }

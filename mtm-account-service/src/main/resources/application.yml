@@ -3,6 +3,27 @@ server:
 spring:
   application:
     name: mtm-account-service
+  zipkin:
+    baseUrl: ${ZIPKIN_URL:http://localhost:9411}
+  tracing:
+    sampling:
+      probability: 1.0
+    baggage:
+      remote-fields:
+        - x-request-id
+      correlation:
+        fields:
+          - x-request-id
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
 
 eureka:
   client:
