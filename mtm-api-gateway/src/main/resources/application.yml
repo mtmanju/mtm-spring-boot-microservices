@@ -1,27 +1,48 @@
 info:
   component: Edge Server
 
+spring:
+  application:
+    name: mtm-api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: account-service
+          uri: lb://mtm-account-service
+          predicates:
+            - Path=/api/account/**
+          filters:
+            - StripPrefix=2
+        - id: customer-service
+          uri: lb://mtm-customer-service
+          predicates:
+            - Path=/api/customer/**
+          filters:
+            - StripPrefix=2
+  zipkin:
+    baseUrl: ${ZIPKIN_URL:http://localhost:9411}
+  tracing:
+    sampling:
+      probability: 1.0
+    baggage:
+      remote-fields:
+        - x-request-id
+      correlation:
+        fields:
+          - x-request-id
+
 management:
-  endpoint:
-    shutdown:
-      enabled: true
-    restart:
-      enabled: true
-    health:
-      enabled: false
-
-zuul:
-  prefix: /api
-  routes:
-    account:
-      path: /account/**
-      serviceId: account-service
-    customer:
-      path: /customer/**
-      serviceId: customer-service
-
-ribbon:
-  eureka:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  tracing:
+    sampling:
+      probability: 1.0
     enabled: true
 
 eureka:
@@ -31,9 +52,10 @@ eureka:
     registerWithEureka: false
 
 server:
-  port: 8762
+  port: 8763
 
 logging:
   level:
     ROOT: INFO
     org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG

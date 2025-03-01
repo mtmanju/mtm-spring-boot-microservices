@@ -2,8 +2,9 @@ package com.mtm.examples;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import com.mtm.examples.saga.SagaChoreographyApplication;
 
-@SpringBootTest
+@SpringBootTest(classes = SagaChoreographyApplication.class)
 class SagaChoreographyApplicationTests {
 
 	@Test

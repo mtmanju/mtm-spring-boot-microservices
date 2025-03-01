@@ -1,13 +1,14 @@
 package com.mtm.examples.apigateway;
 
-import brave.sampler.Sampler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.observation.aop.ObservedAspect;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@EnableZuulProxy
+@EnableDiscoveryClient
 public class APIGatewayServiceBoot {
 
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class APIGatewayServiceBoot {
     }
 
     @Bean
-    public Sampler defaultSampler() {
-        return Sampler.ALWAYS_SAMPLE;
+    ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
+        return new ObservedAspect(observationRegistry);
     }
 }
