@@ -1,9 +1,46 @@
 server:
-  port: 8094
+  port: 8200
+  servlet:
+    context-path: /solr
 
 spring:
+  application:
+    name: mtm-solr-search-examples
   data:
     solr:
-      host: http://localhost:8983/solr/manju2
-      repositories:
-        enabled: true
+      host: http://localhost:8983/solr
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/index.html
+    disable-swagger-default-url: true
+    url: /solr/v3/api-docs
+    config-url: /solr/v3/api-docs/swagger-config
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match: 
+    - /api/**
+    - /actuator/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+logging:
+  level:
+    org.springframework: INFO
+    com.mtm.examples: DEBUG
+    org.apache.solr: INFO

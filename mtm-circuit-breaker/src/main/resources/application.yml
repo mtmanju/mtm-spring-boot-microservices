@@ -1,5 +1,7 @@
 server:
-  port: ${PORT:8197}
+  port: 8195
+  servlet:
+    context-path: /circuit
 spring:
   application:
     name: mtm-circuit-breaker
@@ -7,31 +9,57 @@ spring:
     serialization:
       indent-output: true
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/index.html
+    disable-swagger-default-url: true
+    url: /circuit/v3/api-docs
+    config-url: /circuit/v3/api-docs/swagger-config
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match: 
+    - /api/**
+    - /actuator/**
+
 management:
   endpoints:
     web:
       exposure:
-        include:
-          - '*'
+        include: "*"
   endpoint:
     health:
       show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
   health:
     circuitbreakers:
       enabled: true
 
 resilience4j:
   circuitbreaker:
-    configs:
-      default:
+    instances:
+      backendA:
         registerHealthIndicator: true
         slidingWindowSize: 10
         minimumNumberOfCalls: 5
         permittedNumberOfCallsInHalfOpenState: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
         waitDurationInOpenState: 5s
-        failureRateThreshold: 10
+        failureRateThreshold: 50
         eventConsumerBufferSize: 10
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    com.mtm.examples: DEBUG
+    org.springdoc: DEBUG
 
 boredapi:
   activity:

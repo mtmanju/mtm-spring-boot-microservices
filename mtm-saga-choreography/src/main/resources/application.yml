@@ -1,5 +1,7 @@
 server:
   port: 8194
+  servlet:
+    context-path: /saga
 
 spring:
   application:
@@ -20,6 +22,35 @@ spring:
       path: /h2-console
       settings:
         web-allow-others: true
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/index.html
+    disable-swagger-default-url: true
+    url: /saga/v3/api-docs
+    config-url: /saga/v3/api-docs/swagger-config
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match: 
+    - /api/**
+    - /actuator/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
 
 logging:
   level:

@@ -1,5 +1,7 @@
 server:
   port: ${PORT:8191}
+  servlet:
+    context-path: /account
 spring:
   application:
     name: mtm-account-service
@@ -15,15 +17,38 @@ spring:
         fields:
           - x-request-id
 
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/index.html
+    disable-swagger-default-url: true
+    url: /account/v3/api-docs
+    config-url: /account/v3/api-docs/swagger-config
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match: 
+    - /api/**
+    - /actuator/**
+
 management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
   tracing:
     sampling:
       probability: 1.0
     enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics
 
 eureka:
   client:

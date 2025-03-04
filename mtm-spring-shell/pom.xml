@@ -27,6 +27,11 @@
             <artifactId>junit-platform-runner</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.mtm.examples</groupId>
+            <artifactId>mtm-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

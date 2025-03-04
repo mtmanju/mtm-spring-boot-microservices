@@ -1,11 +1,31 @@
 server:
-  port: ${PORT:8197}
+  port: 8197
+  servlet:
+    context-path: /ratelimit
+
 spring:
   application:
     name: mtm-springboot-ratelimiting
   jackson:
     serialization:
       indent-output: true
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/index.html
+    disable-swagger-default-url: true
+    url: /ratelimit/v3/api-docs
+    config-url: /ratelimit/v3/api-docs/swagger-config
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match: 
+    - /api/**
+    - /actuator/**
+  packages-to-scan: com.mtm.examples.ratelimiting
 
 management:
   endpoints:

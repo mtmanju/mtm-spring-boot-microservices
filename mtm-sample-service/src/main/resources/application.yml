@@ -1,13 +1,49 @@
 spring:
   application:
-    name: MTM Spring Boot Examples
+    name: mtm-sample-service
   cloud:
     compatibility-verifier:
       enabled: false
 server:
-  port: 8191
+  port: 8201
+  servlet:
+    context-path: /sample
 
 sample:
   baseurl: http://localhost:8080/
   baseUrl2: http://localhost:8081/
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui/index.html
+    disable-swagger-default-url: true
+    url: /sample/v3/api-docs
+    config-url: /sample/v3/api-docs/swagger-config
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match: 
+    - /api/**
+    - /actuator/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+logging:
+  level:
+    org.springframework: INFO
+    com.mtm.examples: DEBUG
 

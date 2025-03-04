@@ -1,8 +1,35 @@
 server:
-  port: ${PORT:8392}
+  port: 8199
+  servlet:
+    context-path: /shell
 
 spring:
   main:
     allow-bean-definition-overriding: true
   application:
-    name: spring-shell
+    name: mtm-spring-shell
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/index.html
+    disable-swagger-default-url: true
+  api-docs:
+    path: /v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+logging:
+  level:
+    org.springframework: INFO
+    com.mtm.examples: DEBUG

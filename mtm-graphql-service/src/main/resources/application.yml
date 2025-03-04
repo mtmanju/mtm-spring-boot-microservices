@@ -1,18 +1,31 @@
-# See http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 server:
-  port: 8204
+  port: 8196
   servlet:
-    context-path: /kafka-producer
+    context-path: /graphql
 
 spring:
   application:
-    name: mtm-kafka-producer
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-  thymeleaf.cache: false
+    name: mtm-graphql-service
+  datasource:
+    url: jdbc:h2:mem:graphqldb
+    username: sa
+    password: 
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
 
 springdoc:
   api-docs:
@@ -22,8 +35,8 @@ springdoc:
     enabled: true
     path: /swagger-ui/index.html
     disable-swagger-default-url: true
-    url: /kafka-producer/v3/api-docs
-    config-url: /kafka-producer/v3/api-docs/swagger-config
+    url: /graphql/v3/api-docs
+    config-url: /graphql/v3/api-docs/swagger-config
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   paths-to-match: 
@@ -46,5 +59,4 @@ management:
 logging:
   level:
     org.springframework: INFO
-    com.mtm.examples: DEBUG
-    org.apache.kafka: INFO
+    com.mtm.examples: DEBUG 

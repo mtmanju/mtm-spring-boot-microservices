@@ -1,18 +1,11 @@
-# See http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 server:
-  port: 8204
+  port: 8198
   servlet:
-    context-path: /kafka-producer
+    context-path: /timelimit
 
 spring:
   application:
-    name: mtm-kafka-producer
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-  thymeleaf.cache: false
+    name: mtm-springboot-timelimiting
 
 springdoc:
   api-docs:
@@ -22,8 +15,8 @@ springdoc:
     enabled: true
     path: /swagger-ui/index.html
     disable-swagger-default-url: true
-    url: /kafka-producer/v3/api-docs
-    config-url: /kafka-producer/v3/api-docs/swagger-config
+    url: /timelimit/v3/api-docs
+    config-url: /timelimit/v3/api-docs/swagger-config
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   paths-to-match: 
@@ -46,5 +39,4 @@ management:
 logging:
   level:
     org.springframework: INFO
-    com.mtm.examples: DEBUG
-    org.apache.kafka: INFO
+    com.mtm.examples: DEBUG 
