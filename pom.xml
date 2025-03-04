@@ -31,6 +31,7 @@
 		<module>mtm-commons</module>
 		<module>mtm-service-discovery</module>
 		<module>mtm-account-service</module>
+		<module>mtm-api-gateway</module>
 		<module>mtm-customer-service</module>
 		<module>mtm-circuit-breaker</module>
 		<module>mtm-ff4j-examples</module>
@@ -41,8 +42,10 @@
 		<module>mtm-saga-choreography</module>
 		<module>mtm-sample-service</module>
 		<module>mtm-solr-search-examples</module>
+		<module>mtm-springboot-ratelimiting</module>
 		<module>mtm-springboot-timelimiting</module>
 		<module>mtm-zipkin-tracing</module>
+		<module>mtm-spring-shell</module>
 	</modules>
 
 	<dependencyManagement>
