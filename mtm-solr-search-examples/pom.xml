@@ -8,7 +8,7 @@
 		<artifactId>mtm-spring-boot-microservices</artifactId>
 		<version>1.0</version>
 	</parent>
-	<artifactId>mtm-solr-search-example</artifactId>
+	<artifactId>mtm-solr-search-examples</artifactId>
 
 	<properties>
 		<java.version>17</java.version>
